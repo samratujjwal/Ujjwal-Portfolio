@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-paper: #f7f6f2;
+  --color-ink: #101114;
+  --color-structure: #2a4b8d;
+  --color-structure-soft: #2a4b8d1a;
+  --color-signal: #d9581f;
+  --color-signal-soft: #d9581f1a;
+
+  --color-paper-dark: #12151c;
+  --color-ink-dark: #f2f1ec;
+  --color-structure-dark: #6a8fd6;
+  --color-structure-dark-soft: #6a8fd626;
+  --color-signal-dark: #e97a45;
+  --color-signal-dark-soft: #e97a4526;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--color-paper-dark);
+    color: var(--color-ink-dark);
+  }
+}
+
+::selection {
+  background: var(--color-signal-soft);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+}
+
+/* The custom signal cursor replaces the system cursor only where a fine
+   pointer is available; touch devices keep the native cursor entirely. */
+@media (hover: hover) and (pointer: fine) {
+  body[data-signal-cursor="active"] {
+    cursor: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
